@@ -115,7 +115,7 @@ app.get("/", async (req, res) => {
 
   res.render("index", { 
   posts,
-  currentUser
+  currentUser: req.session.userId || null
 });
 });
 
@@ -247,7 +247,7 @@ app.get("/profile", isLoggedIn, async (req, res) => {
   res.render("profile", {
     user,
     posts,
-    currentUser: req.session.userId
+    currentUser: req.session.userId || null
   });
 
 });
@@ -339,3 +339,4 @@ app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 
 });
+

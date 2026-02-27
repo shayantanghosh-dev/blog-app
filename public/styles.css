@@ -496,11 +496,17 @@ button.btn {
 }
 
 .footer {
+    position: fixed;      /* Stick to viewport bottom */
+    bottom: 0;
+    left: 0;
+    width: 100%;
     text-align: center;
-    padding: 15px 0;
-    background: #222;
-    color: #fff;
-    margin-top: 30px;
+    padding: 10px 0;
+    background: rgba(34, 34, 34, 0.7); /* semi-transparent dark background */
+    color: white;
     font-size: 14px;
+    backdrop-filter: blur(5px);  /* subtle glass effect */
+    z-index: 1000;
 }
+
 

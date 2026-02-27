@@ -92,6 +92,22 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }));
 
+// Middleware to make currentUser available in all templates
+app.use(async (req, res, next) => {
+  if (req.session.userId) {
+    try {
+      const user = await User.findById(req.session.userId);
+      res.locals.currentUser = user;  // now available in EJS
+    } catch (err) {
+      console.log(err);
+      res.locals.currentUser = null;
+    }
+  } else {
+    res.locals.currentUser = null;
+  }
+  next();
+});
+
 function isLoggedIn(req, res, next) {
   if (!req.session.userId) {
     return res.status(401).send("Please login first");
@@ -333,6 +349,7 @@ app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 
 });
+
 
 
 

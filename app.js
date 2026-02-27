@@ -123,15 +123,8 @@ app.set("view engine", "ejs");
 
 //Home route - show all posts
 app.get("/", async (req, res) => {
-  const posts = await Post.find()
-    .populate("user")
-    .sort({ createdAt: -1 });
-
-  const currentUser = req.session.userId 
-    ? await User.findById(req.session.userId) 
-    : null;
-
-res.render("index", { posts, currentUser });
+  const posts = await Post.find().populate("user").sort({ createdAt: -1 });
+  res.render("index", { posts });
 });
 
 //Show form to create new posts
@@ -250,17 +243,11 @@ app.get("/logout", (req, res) => {
   });
 });
 
-//Profile Route
-// ===== MY PROFILE PAGE =====
+// My own profile
 app.get("/profile", isLoggedIn, async (req, res) => {
-
   const user = await User.findById(req.session.userId);
-
-  const posts = await Post.find({ user: user._id })
-    .sort({ createdAt: -1 });
-
-  res.render("profile", { user, posts, currentUser: req.session.userId ? await User.findById(req.session.userId) : null });
-
+  const posts = await Post.find({ user: user._id }).sort({ createdAt: -1 });
+  res.render("profile", { user, posts });
 });
 
 //toggle route
@@ -327,21 +314,12 @@ app.post("/update-avatar", isLoggedIn, upload.single("avatar"), async (req, res)
 
 });
 
-// ===== VIEW OTHER USER PROFILE =====
-app.get("/profile/:username?", isLoggedIn, async (req, res) => {
-    let user;
-    if (req.params.username) {
-        user = await User.findOne({ username: req.params.username });
-        if (!user) return res.send("User not found");
-    } else {
-        user = await User.findById(req.session.userId);
-    }
-
-    const posts = await Post.find({ user: user._id }).sort({ createdAt: -1 });
-
-    const currentUser = await User.findById(req.session.userId);
-
-    res.render("profile", { user, posts, currentUser });
+// Other user's profile
+app.get("/profile/:username", isLoggedIn, async (req, res) => {
+  const user = await User.findOne({ username: req.params.username });
+  if (!user) return res.send("User not found");
+  const posts = await Post.find({ user: user._id }).sort({ createdAt: -1 });
+  res.render("profile", { user, posts });
 });
 
 //end
@@ -349,6 +327,7 @@ app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 
 });
+
 
 
 

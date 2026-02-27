@@ -111,12 +111,11 @@ app.get("/", async (req, res) => {
     .populate("user")
     .sort({ createdAt: -1 });
 
-  const currentUser = req.session.userId || null;
+  const currentUser = req.session.userId 
+    ? await User.findById(req.session.userId) 
+    : null;
 
-  res.render("index", { 
-  posts,
-  currentUser: req.session.userId || null
-});
+res.render("index", { posts, currentUser });
 });
 
 //Show form to create new posts
@@ -244,11 +243,7 @@ app.get("/profile", isLoggedIn, async (req, res) => {
   const posts = await Post.find({ user: user._id })
     .sort({ createdAt: -1 });
 
-  res.render("profile", {
-    user,
-    posts,
-    currentUser: req.session.userId || null
-  });
+  res.render("profile", { user, posts, currentUser: req.session.userId ? await User.findById(req.session.userId) : null });
 
 });
 
@@ -339,4 +334,5 @@ app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 
 });
+
 

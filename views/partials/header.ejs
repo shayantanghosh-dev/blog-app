@@ -2,9 +2,7 @@
 <html>
 
 <head>
-    <title>
-        <%= title %>
-    </title>
+    <title><%= title %></title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 
@@ -16,13 +14,21 @@
 
         <div class="nav-buttons">
 
-            <a class="btn" href="/new">+ New Post</a>
             <a class="btn secondary" href="/">Home</a>
 
-            <!-- Profile Icon → goes to profile page -->
-            <a href="/profile" class="profile-link">
-                <img src="/default-avatar.png" alt="Profile" class="profile-icon">
-            </a>
+            <% if (!currentUser) { %>
+                <a class="btn" href="/login">Login</a>
+                <a class="btn" href="/register">Register</a>
+            <% } else { %>
+                <a class="btn" href="/new">+ New Post</a>
+
+                <!-- Profile Icon → goes to profile page -->
+                <a href="/profile" class="profile-link">
+                    <img src="/default-avatar.png" alt="Profile" class="profile-icon">
+                </a>
+
+                <a class="btn secondary" href="/logout">Logout</a>
+            <% } %>
 
         </div>
 

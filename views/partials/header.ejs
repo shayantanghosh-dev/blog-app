@@ -24,7 +24,10 @@
 
                 <!-- Profile Icon → goes to profile page -->
                 <a href="/profile" class="profile-link">
-                    <img src="/default-avatar.png" alt="Profile" class="profile-icon">
+                    <img 
+                        src="<%= currentUser.profilePic || '/default-avatar.png' %>" 
+                        alt="Profile" 
+                        class="profile-icon">
                 </a>
 
                 <a class="btn secondary" href="/logout">Logout</a>

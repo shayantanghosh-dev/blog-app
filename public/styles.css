@@ -1,0 +1,491 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #222;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+.btn {
+    background: #4CAF50;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.edit {
+    color: blue;
+    text-decoration: none;
+}
+
+.delete {
+    background: crimson;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.empty {
+    text-align: center;
+    color: gray;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input,
+textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 150px;
+}
+
+button.btn {
+    width: fit-content;
+    border: none;
+    cursor: pointer;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.header {
+    background: #222;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.secondary {
+    background: #555;
+}
+
+.actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    background: #4CAF50;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.danger:hover {
+    background: #b3002d;
+}
+
+.small {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.danger {
+    background: crimson;
+}
+
+
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .nav-buttons {
+        justify-content: center;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .form input,
+    .form textarea {
+        font-size: 14px;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+}
+
+#charCount {
+    font-size: 14px;
+    color: gray;
+}
+
+.card {
+    animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.meta {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.btn.small {
+    font-size: 14px;
+}
+
+.btn.small:hover {
+    background: #ff4d6d;
+}
+
+.actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.like-btn {
+    background: #22c55e;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.like-btn:hover {
+    background: #16a34a;
+}
+
+/* ===== Social Feed Style ===== */
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transition: transform 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* Header */
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff7a18, #ff0058);
+}
+
+/* Username */
+.username a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #111;
+}
+
+.username a:hover {
+    text-decoration: underline;
+}
+
+/* Time */
+.time {
+    font-size: 12px;
+    color: gray;
+}
+
+/* Title */
+.post-title {
+    margin: 8px 0;
+}
+
+/* Content */
+.post-content {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Actions row */
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+/* Action buttons */
+.action-btn {
+    background: #f1f3f5;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.action-btn:hover {
+    background: #e2e6ea;
+}
+
+/* Like color */
+.action-btn.like:hover {
+    background: #ffe3e3;
+}
+
+/* Delete color */
+.action-btn.delete:hover {
+    background: #ffe0e0;
+}
+
+/* Make nav align nicely */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+
+.logout {
+    color: red;
+}
+
+/* ===== PROFILE PAGE ===== */
+
+.profile-container {
+    max-width: 700px;
+    margin: auto;
+}
+
+.profile-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+}
+
+/* Profile picture center */
+.profile-pic img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+    border: 4px solid #f4f4f4;
+}
+
+/* Username */
+.profile-username {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Display name */
+.profile-display {
+    font-size: 16px;
+    color: gray;
+}
+
+/* Edit buttons */
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+/* Section title */
+.section-title {
+    margin: 20px 0 10px;
+}
+
+/* Profile icon in navbar */
+
+.profile-link {
+    display: flex;
+    align-items: center;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.profile-icon:hover {
+    transform: scale(1.08);
+}
+
+.profile-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.big-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.username {
+    color: gray;
+    margin-top: -10px;
+}
+
+.post-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.post-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.username {
+    font-size: 12px;
+    color: gray;
+    margin: 0;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.post-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.display-name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.username {
+    font-size: 12px;
+    color: gray;
+}

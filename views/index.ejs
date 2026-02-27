@@ -1,0 +1,86 @@
+<%- include("partials/header", { title: "DevBlog Feed" }) %>
+
+    <main>
+
+        <% if (posts.length===0) { %>
+            <p class="empty">No posts yet 🚀</p>
+            <% } %>
+
+                <% posts.forEach(post=> { %>
+
+                    <div class="card">
+
+                        <!-- ===== POST HEADER ===== -->
+                        <div class="post-header">
+                        
+                            <!-- USER PROFILE PIC -->
+                            <img src="<%= post.user.profilePic || '/default-avatar.png' %>" class="post-avatar">
+                        
+                            <div>
+                        
+                                <!-- DISPLAY NAME -->
+                                <div class="display-name">
+                                    <a href="/profile/<%= post.user.username %>">
+                                        <%= post.user.displayName || post.user.username %>
+                                    </a>
+                                </div>
+                        
+                                <!-- USERNAME -->
+                                <div class="username">
+                                    @<%= post.user.username %>
+                                </div>
+                        
+                                <!-- TIME -->
+                                <div class="time">
+                                    <%= new Date(post.createdAt).toLocaleString() %>
+                                </div>
+                        
+                            </div>
+                        
+                        </div>
+
+                        <!-- ===== TITLE ===== -->
+                        <h2 class="post-title">
+                            <%= post.title %>
+                        </h2>
+
+                        <!-- ===== CONTENT ===== -->
+                        <p class="post-content">
+                            <%= post.content %>
+                        </p>
+
+                        <!-- ===== ACTIONS ===== -->
+                        <div class="actions">
+
+                            <!-- ❤️ LIKE -->
+                            <form action="/like/<%= post._id %>" method="POST">
+                                <button type="submit" class="action-btn like">
+                                    ❤️ <%= post.likes.length %>
+                                </button>
+                            </form>
+
+                            <% if (currentUser && post.user._id.toString()===currentUser.toString()) { %>
+
+                                <!-- ✏️ EDIT -->
+                                <a href="/edit/<%= post._id %>" class="action-btn edit">
+                                    ✏️ Edit
+                                </a>
+
+                                <!-- 🗑️ DELETE -->
+                                <form action="/delete/<%= post._id %>" method="POST">
+                                    <button type="submit" class="action-btn delete">
+                                        🗑️ Delete
+                                    </button>
+                                </form>
+
+                                <% } %>
+
+                        </div>
+
+                    </div>
+
+                    <% }) %>
+
+    </main>
+
+    <%- include("partials/footer") %>

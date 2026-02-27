@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= user.username %>'s Profile
+    </title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>@<%= user.username %>
+        </h1>
+
+        <div class="nav-buttons">
+            <a href="/" class="btn small">Home</a>
+            <a href="/logout" class="btn secondary small">Logout</a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ===== PROFILE SECTION ===== -->
+        <section class="profile-section">
+
+            <!-- PROFILE PIC CENTER -->
+            <div class="profile-pic-center">
+
+                <img src="<%= user.profilePic || '/default-avatar.png' %>" class="big-avatar">
+
+                <% if (currentUser && currentUser.toString()===user._id.toString()) { %>
+
+                    <!-- CHANGE AVATAR -->
+                    <form action="/update-avatar" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="avatar" required>
+                        <button class="btn small">Change Profile Picture</button>
+                    </form>
+
+                    <% } %>
+
+            </div>
+
+            <!-- NAME + USERNAME -->
+            <div class="profile-info">
+
+                <h2>
+                    <%= user.displayName || "No display name" %>
+                </h2>
+                <p>@<%= user.username %>
+                </p>
+
+                <% if (currentUser && currentUser.toString()===user._id.toString()) { %>
+
+                    <!-- EDIT NAME + USERNAME -->
+                    <form action="/update-profile" method="POST" class="form">
+
+                        <input type="text" name="displayName" placeholder="Display Name"
+                            value="<%= user.displayName %>">
+
+                        <input type="text" name="username" placeholder="Username" value="<%= user.username %>">
+
+                        <button class="btn small">Save Changes</button>
+
+                    </form>
+
+                    <% } %>
+
+            </div>
+
+        </section>
+
+        <!-- ===== POSTS ===== -->
+        <h3>Your Posts</h3>
+
+        <% if (posts.length===0) { %>
+            <p class="empty">No posts yet</p>
+            <% } %>
+
+                <% posts.forEach(post=> { %>
+                    <div class="card">
+                        <h2>
+                            <%= post.title %>
+                        </h2>
+                        <p>
+                            <%= post.content %>
+                        </p>
+                    </div>
+                    <% }) %>
+
+    </main>
+
+</body>
+
+</html>

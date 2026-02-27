@@ -312,21 +312,20 @@ app.post("/update-avatar", isLoggedIn, upload.single("avatar"), async (req, res)
 });
 
 // ===== VIEW OTHER USER PROFILE =====
-app.get("/profile/:username", isLoggedIn, async (req, res) => {
+app.get("/profile/:username?", isLoggedIn, async (req, res) => {
+    let user;
+    if (req.params.username) {
+        user = await User.findOne({ username: req.params.username });
+        if (!user) return res.send("User not found");
+    } else {
+        user = await User.findById(req.session.userId);
+    }
 
-  const user = await User.findOne({ username: req.params.username });
+    const posts = await Post.find({ user: user._id }).sort({ createdAt: -1 });
 
-  if (!user) return res.send("User not found");
+    const currentUser = await User.findById(req.session.userId);
 
-  const posts = await Post.find({ user: user._id })
-    .sort({ createdAt: -1 });
-
-  res.render("profile", {
-    user,
-    posts,
-    currentUser: req.session.userId
-  });
-
+    res.render("profile", { user, posts, currentUser });
 });
 
 //end
@@ -334,5 +333,6 @@ app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 
 });
+
 
 

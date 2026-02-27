@@ -50,37 +50,38 @@
                         </p>
 
                         <!-- ===== ACTIONS ===== -->
-                        <div class="actions">
+<div class="actions">
 
-                            <!-- ❤️ LIKE -->
-                            <form action="/like/<%= post._id %>" method="POST">
-                                <button type="submit" class="action-btn like">
-                                    ❤️ <%= post.likes.length %>
-                                </button>
-                            </form>
+    <!-- ❤️ LIKE -->
+    <form action="/like/<%= post._id %>" method="POST">
+        <button type="submit" class="action-btn like">
+            ❤️ <%= post.likes.length %>
+        </button>
+    </form>
 
-                            <% if (currentUser && post.user._id.toString()===currentUser.toString()) { %>
+    <% if (currentUser && post.user._id.toString() === currentUser._id.toString()) { %>
 
-                                <!-- ✏️ EDIT -->
-                                <a href="/edit/<%= post._id %>" class="action-btn edit">
-                                    ✏️ Edit
-                                </a>
+        <!-- ✏️ EDIT -->
+        <a href="/edit/<%= post._id %>" class="action-btn edit">
+            ✏️ Edit
+        </a>
 
-                                <!-- 🗑️ DELETE -->
-                                <form action="/delete/<%= post._id %>" method="POST">
-                                    <button type="submit" class="action-btn delete">
-                                        🗑️ Delete
-                                    </button>
-                                </form>
+        <!-- 🗑️ DELETE -->
+        <form action="/delete/<%= post._id %>" method="POST" style="display:inline;">
+            <button type="submit" class="action-btn delete">
+                🗑️ Delete
+            </button>
+        </form>
 
-                                <% } %>
+    <% } %>
 
-                        </div>
+</div>
 
                     </div>
 
                     <% }) %>
 
     </main>
+
 
     <%- include("partials/footer") %>

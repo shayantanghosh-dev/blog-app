@@ -106,16 +106,16 @@ app.set("view engine", "ejs");
 //let posts = [];
 
 //Home route - show all posts
-app.get("/", isLoggedIn, async (req, res) => {
+app.get("/", async (req, res) => {
   const posts = await Post.find()
     .populate("user")
     .sort({ createdAt: -1 });
 
-  const currentUser = await User.findById(req.session.userId);
+  const currentUser = req.session.userId || null;
 
   res.render("index", { 
   posts,
-  currentUser: req.session.userId
+  currentUser
 });
 });
 
@@ -337,4 +337,5 @@ app.get("/profile/:username", isLoggedIn, async (req, res) => {
 //end
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
+
 });

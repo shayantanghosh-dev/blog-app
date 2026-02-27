@@ -345,12 +345,16 @@ button.btn {
     align-items: center;
 }
 
+/* Navbar adjustments */
 .nav-buttons {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 12px;       /* spacing between buttons */
 }
 
+.nav-buttons .profile-link {
+    margin-left: 4px;  /* tiny spacing from logout */
+}
 
 
 .logout {
@@ -488,4 +492,5 @@ button.btn {
 .username {
     font-size: 12px;
     color: gray;
+
 }
